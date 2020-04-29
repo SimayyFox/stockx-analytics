@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="261.0" prefWidth="522.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainScene">
+   <children>
+      <TextField fx:id="querybox" layoutX="33.0" layoutY="46.0" onAction="#onEnter" prefHeight="25.0" prefWidth="238.0" />
+      <Text layoutX="48.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Product Name, ID or StockX SKU" textAlignment="CENTER" wrappingWidth="208.0" />
+   </children>
+   <stylesheets>
+      <URL value="@stylesheets/sheetMainScene.css" />
+   </stylesheets>
+</AnchorPane>

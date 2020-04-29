@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<?import java.net.URL?>
+<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BarChart fx:id="pricechart" layoutX="14.0" layoutY="63.0" prefHeight="610.0" prefWidth="858.0" title="Size to price">
+        <xAxis>
+          <CategoryAxis fx:id="cAxis" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="nAxis" side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <Button layoutX="830.0" layoutY="13.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="56.0" text="Bids" />
+      <Button layoutX="764.0" layoutY="13.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="56.0" text="Asks" />
+      <Button layoutX="698.0" layoutY="13.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="56.0" text="Sales" />
+   </children>
+    <stylesheets>
+        <URL value="@stylesheets/sheetAnalyticsScene.css" />
+    </stylesheets>
+</AnchorPane>
