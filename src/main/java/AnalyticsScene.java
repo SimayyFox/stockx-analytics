@@ -1,12 +1,22 @@
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.TreeSet;
 
 public class AnalyticsScene {
@@ -31,11 +41,11 @@ public class AnalyticsScene {
     @FXML
     private TabPane tabPane;
     @FXML
-    private Pane salesPane;
+    private Tab salesTab;
     @FXML
-    private Pane asksPane;
+    private Tab asksTab;
     @FXML
-    private Pane bidsPane;
+    private Tab bidsTab;
 
     private SizePriceMap spmSales;
     private SizePriceMap spmAsks;
@@ -50,6 +60,46 @@ public class AnalyticsScene {
         initializeSalesChart(sizeset);
         initializeAsksChart(sizeset);
         initializeBidsChart(sizeset);
+    }
+
+    public void back(ActionEvent event) {
+        changeScene(event, "/mainScene.fxml");
+    }
+
+    /** This method changes the scene to the referenced fxml file.
+     *
+     * @param event the event that triggers the change of the scene
+     * @param path the path to the FXML file
+     */
+    public void changeScene(ActionEvent event, String path) {
+        Parent parent = loadFxml(path);
+        if (parent == null) {
+            return;
+        }
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(parent);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    /**
+     * Load the provided FXML file.
+     * @param path the path to the FXML file
+     */
+    public Parent loadFxml(String path) {
+        Parent parent;
+        try {
+            parent = FXMLLoader.load(getClass().getResource(path));
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Loading failed");
+            alert.setContentText("Loading failed");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+            return null;
+        }
+        return parent;
     }
 
     /**
@@ -161,60 +211,3 @@ public class AnalyticsScene {
         this.spmBids = spm3;
     }
 }
-
-
-//import javafx.fxml.FXML;
-//        import javafx.scene.Scene;
-//        import javafx.scene.chart.*;
-//        import javafx.stage.Stage;
-//
-//        import java.util.ArrayList;
-//        import java.util.TreeSet;
-//
-//public class AnalyticsScene {
-//    @FXML
-//    private Chart pricechart;
-//
-//    @FXML
-//    private CategoryAxis xaxis;
-//
-//    @FXML
-//    private CategoryAxis yaxis;
-//
-//    public static void initialize(SizePriceMap spm, Stage stage, String name) {
-//        TreeSet<Double> sizeset = spm.getSizeSet();
-//        stage.setTitle("SKU Bar Chart - " + name);
-//
-//        final CategoryAxis xAxis = new CategoryAxis();
-//        final NumberAxis yAxis = new NumberAxis();
-//        final BarChart<String,Number> bc = new BarChart<String,Number>(xAxis,yAxis);
-//        bc.setTitle(name);
-//        xAxis.setLabel("Size");
-//        yAxis.setLabel("Price");
-//
-//        ArrayList<XYChart.Series> serielist = new ArrayList<>();
-//
-//        for (int i = 0; i < sizeset.size(); i++) {
-//            serielist.add(new XYChart.Series());
-//        }
-//
-//        int count = 0;
-//
-//        for (Double size : sizeset) {
-//            serielist.get(count).getData().add(new XYChart.Data(size.toString(), spm.mean(size)));
-//            count++;
-//        }
-//
-//        for (int k = 0; k < serielist.size(); k++) {
-//            bc.getData().add(k, serielist.get(k));
-//        }
-//
-//        bc.setCategoryGap(1.0);
-//        bc.setBarGap(0);
-//        bc.setMaxWidth(200.0);
-//        //pricechart = bc;
-//        Scene scene  = new Scene(bc, 800, 600);
-//        stage.setScene(scene);
-//        stage.show();
-//    }
-//}

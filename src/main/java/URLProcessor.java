@@ -45,7 +45,7 @@ public class URLProcessor {
 
         System.out.println("\nThank you, processing SKU " + sku.toString() + "...");
 
-        URL url = new URL("https://stockx.com/api/products/" + sku + "/activity?state=300&currency=EUR&limit=100&page=1&sort=amount&order=DESC&country=NL");
+        URL url = new URL("https://stockx.com/api/products/" + sku + "/activity?state=300&currency=EUR&limit=10000&page=1&sort=amount&order=DESC&country=NL");
 
         try {
             con = url.openConnection();

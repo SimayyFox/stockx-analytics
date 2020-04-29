@@ -51,6 +51,11 @@ public class JSONProcessor {
         return ja;
     }
 
+    /**
+     * Uses the input BufferedReader to extract the StockX SKU and product name.
+     * @param r - BufferedReader of the search json file
+     * @return array of two strings which contains product SKU and name
+     */
     public static String[] getSKU(BufferedReader r) {
         String[] skuname = new String[2];
         String jsonstring = r.lines().collect(Collectors.joining());
