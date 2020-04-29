@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="673ce0f5-fc71-43c0-85b4-88f7c70ac14b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/AnalyticsScene.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/AnalyticsScene.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/SizePriceMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/SizePriceMap.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/AnalyticsScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AnalyticsScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SizePriceMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SizePriceMap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
