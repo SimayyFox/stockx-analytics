@@ -53,12 +53,42 @@ public class SizePriceMap extends HashMap<Double, ArrayList<Integer>> {
 
     public double mean(Double size) {
         double sum = 0;
+        int place = 0;
+        int ignored = 0;
 
-        for (Integer price : this.get((double) size)) {
-            sum += price;
+        double dsize = (double) size;
+
+        for (Integer price : this.get(dsize)) {
+
+            //Adding the first price:
+            if (place == 0) {
+                sum += price;
+            }
+            else {
+
+                //Adding the second price:
+                if (place == 1) {
+                    if (1.4 * this.get(dsize).get(1) < sum) {
+                        sum = this.get(dsize).get(1);
+                    }
+                    else {
+                        ignored++;
+                    }
+                }
+
+                //Adding third or more price:
+                else {
+                    if (1.4 * this.get(dsize).get(place) < (sum / (place - ignored + 1))) {
+                        sum += this.get(dsize).get(place);
+                    }
+                    else {
+                        ignored++;
+                    }
+                }
+            }
+            place++;
         }
-
-        sum /= this.get((double) size).size();
+        sum /= (this.get((double) size).size() - ignored);
         return sum;
     }
 }

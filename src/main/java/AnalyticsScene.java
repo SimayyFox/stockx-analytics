@@ -170,6 +170,7 @@ public class AnalyticsScene {
         }
 
         int count = 0;
+        int average = 0;
 
         for (Double size : sizeset) {
             serielist.get(count).getData().add(new XYChart.Data(size.toString(), spm.mean(size)));
