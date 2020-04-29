@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="673ce0f5-fc71-43c0-85b4-88f7c70ac14b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/AnalyticsScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AnalyticsScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MainAnalytics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MainAnalytics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MainScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MainScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/URLProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/URLProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/analyticsScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/analyticsScene.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +79,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../TU Delft/Y1/Q3/OOPP/Git" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -125,7 +128,7 @@
       <workItem from="1588105110019" duration="6521000" />
       <workItem from="1588162444738" duration="2330000" />
       <workItem from="1588164806797" duration="803000" />
-      <workItem from="1588185367006" duration="20000" />
+      <workItem from="1588185367006" duration="3427000" />
     </task>
     <servers />
   </component>
@@ -141,10 +144,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="416" y="195" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1588014424185" />
-    <state x="765" y="220" key="#com.intellij.ide.util.MemberChooser" timestamp="1588164283035">
+    <state x="765" y="220" key="#com.intellij.ide.util.MemberChooser" timestamp="1588186142613">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="220" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1588164283035" />
+    <state x="765" y="220" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1588186142613" />
     <state x="690" y="299" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1588015501693">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -161,10 +164,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1588008418846" />
-    <state x="742" y="295" key="FileChooserDialogImpl" timestamp="1588162466147">
+    <state x="742" y="295" key="FileChooserDialogImpl" timestamp="1588185753487">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="742" y="295" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1588162466147" />
+    <state x="742" y="295" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1588185753487" />
     <state width="1877" height="301" key="GridCell.Tab.0.bottom" timestamp="1588165609978">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

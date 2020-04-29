@@ -24,9 +24,14 @@ public class MainScene {
         String[] skuname = JSONProcessor.getSKU(searchreader);
         String sku = skuname[0];
         String name = skuname[1];
-        BufferedReader pagereader = URLProcessor.getReader(sku);
-        SizePriceMap spm = JSONProcessor.initialize(pagereader);
-        changeScene(ae, spm, name);
+        BufferedReader asksReader = URLProcessor.getReaderAsks(sku);
+        BufferedReader bidsReader = URLProcessor.getReaderBids(sku);
+        BufferedReader salesReader = URLProcessor.getReaderSales(sku);
+        SizePriceMap spmasks = JSONProcessor.initialize(asksReader);
+        SizePriceMap spmbids = JSONProcessor.initialize(bidsReader);
+        SizePriceMap spmsales = JSONProcessor.initialize(salesReader);
+
+        changeScene(ae, spmasks, spmbids, spmsales, name);
     }
 
     /**
@@ -34,10 +39,12 @@ public class MainScene {
      * @param event the event that triggers this method
      *
      */
-    public Stage changeScene(ActionEvent event, SizePriceMap spm, String name) throws IOException {
+    public Stage changeScene(ActionEvent event, SizePriceMap spmasks, SizePriceMap spmbids, SizePriceMap spmsales, String name) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         AnalyticsScene analyticsController = new AnalyticsScene();
-        analyticsController.setSpm(spm);
+        analyticsController.setSpmSales(spmsales);
+        analyticsController.setSpmAsks(spmasks);
+        analyticsController.setSpmBids(spmbids);
         analyticsController.setName(name);
         loader.setController(analyticsController);
         loader.setLocation(getClass().getResource("/analyticsScene.fxml"));
