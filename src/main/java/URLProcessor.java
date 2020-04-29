@@ -15,13 +15,61 @@ public class URLProcessor {
      * @return a bufferedreader
      * @throws IOException if method can not find page
      */
-    public static BufferedReader getReader(String sku) throws IOException {
+    public static BufferedReader getReaderSales(String sku) throws IOException {
         InputStream is;
         URLConnection con;
 
         System.out.println("\nThank you, processing SKU " + sku.toString() + "...");
 
-        URL url = new URL("https://stockx.com/api/products/" + sku + "/activity?state=480&currency=EUR&limit=1000&page=1&sort=createdAt&order=DESC&country=NL");
+        URL url = new URL("https://stockx.com/api/products/" + sku + "/activity?state=480&currency=EUR&limit=10000&page=1&sort=createdAt&order=DESC&country=NL");
+
+        try {
+            con = url.openConnection();
+            con.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:75.0) Gecko/20100101 Firefox/75.0");
+            is = con.getInputStream();
+        }
+        catch (IOException e) {
+            throw new IOException("Cannot retrieve website. You have most likely been blocked by the bot-protection-system.\n" +
+                    "Please open the following link in your browser and solve the captcha: https://stockx.com/api/products/" +
+                    sku + "/activity?state=480&currency=EUR&limit=1000&page=1&sort=createdAt&order=DESC&country=NL");
+        }
+
+        BufferedReader r = new BufferedReader(new InputStreamReader(con.getInputStream(), Charset.forName("UTF-8")));
+
+        return r;
+    }
+
+    public static BufferedReader getReaderBids(String sku) throws IOException {
+        InputStream is;
+        URLConnection con;
+
+        System.out.println("\nThank you, processing SKU " + sku.toString() + "...");
+
+        URL url = new URL("https://stockx.com/api/products/" + sku + "/activity?state=300&currency=EUR&limit=100&page=1&sort=amount&order=DESC&country=NL");
+
+        try {
+            con = url.openConnection();
+            con.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:75.0) Gecko/20100101 Firefox/75.0");
+            is = con.getInputStream();
+        }
+        catch (IOException e) {
+            throw new IOException("Cannot retrieve website. You have most likely been blocked by the bot-protection-system.\n" +
+                    "Please open the following link in your browser and solve the captcha: https://stockx.com/api/products/" +
+                    sku + "/activity?state=480&currency=EUR&limit=1000&page=1&sort=createdAt&order=DESC&country=NL");
+        }
+
+        BufferedReader r = new BufferedReader(new InputStreamReader(con.getInputStream(), Charset.forName("UTF-8")));
+
+        return r;
+    }
+
+    public static BufferedReader getReaderAsks(String sku) throws IOException {
+        InputStream is;
+        URLConnection con;
+
+        System.out.println("\nThank you, processing SKU " + sku.toString() + "...");
+
+        URL url = new URL("https://stockx.com/api/products/" + sku + "/activity?state=400&currency=EUR&limit=10000&page=1&sort=amount&order=ASC&country=NL");
 
         try {
             con = url.openConnection();
