@@ -13,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.Console;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.stream.Collectors;
 
 public class MainScene {
     @FXML
@@ -24,9 +25,23 @@ public class MainScene {
         String[] skuname = JSONProcessor.getSKU(searchreader);
         String sku = skuname[0];
         String name = skuname[1];
-        BufferedReader pagereader = URLProcessor.getReader(sku);
-        SizePriceMap spm = JSONProcessor.initialize(pagereader);
-        changeScene(ae, spm, name);
+        BufferedReader asksReader = URLProcessor.getReaderAsks(sku);
+        BufferedReader bidsReader = URLProcessor.getReaderBids(sku);
+        BufferedReader salesReader = URLProcessor.getReaderSales(sku);
+
+        String asksString = asksReader.lines().collect(Collectors.joining());
+        String bidsString = bidsReader.lines().collect(Collectors.joining());
+        String salesString = salesReader.lines().collect(Collectors.joining());
+
+        int totalsales = JSONProcessor.getTotal(salesString);
+        int totalasks = JSONProcessor.getTotal(asksString);
+        int totalbids = JSONProcessor.getTotal(bidsString);
+
+        SizePriceMap spmasks = JSONProcessor.initialize(asksString);
+        SizePriceMap spmbids = JSONProcessor.initialize(bidsString);
+        SizePriceMap spmsales = JSONProcessor.initialize(salesString);
+
+        changeScene(ae, spmasks, spmbids, spmsales, name, totalsales, totalasks, totalbids);
     }
 
     /**
@@ -34,11 +49,17 @@ public class MainScene {
      * @param event the event that triggers this method
      *
      */
-    public Stage changeScene(ActionEvent event, SizePriceMap spm, String name) throws IOException {
+    public Stage changeScene(ActionEvent event, SizePriceMap spmasks, SizePriceMap spmbids, SizePriceMap spmsales, String name,
+                             int totalsales, int totalasks, int totalbids) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         AnalyticsScene analyticsController = new AnalyticsScene();
-        analyticsController.setSpm(spm);
+        analyticsController.setSpmSales(spmsales);
+        analyticsController.setSpmAsks(spmasks);
+        analyticsController.setSpmBids(spmbids);
         analyticsController.setName(name);
+        analyticsController.setTotalasksint(totalasks);
+        analyticsController.setTotalbidsint(totalbids);
+        analyticsController.setTotalsalesint(totalsales);
         loader.setController(analyticsController);
         loader.setLocation(getClass().getResource("/analyticsScene.fxml"));
         Parent analyticsParent = loader.load();

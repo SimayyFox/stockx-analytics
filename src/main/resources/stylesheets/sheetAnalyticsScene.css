@@ -1,3 +1,8 @@
 .BarChart {
-    -fx-fill: black;
+    -fx-background-color: black;
+}
+
+.tab-pane *.tab-header-background {
+    -fx-opacity: 0;
+    -fx-effect: innershadow(two-pass-box , rgba(0,0,0,0.6) , 4, 0.0 , 0 , 0);
 }
