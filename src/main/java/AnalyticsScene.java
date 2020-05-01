@@ -46,10 +46,19 @@ public class AnalyticsScene {
     private Tab asksTab;
     @FXML
     private Tab bidsTab;
+    @FXML
+    private Label totalsales;
+    @FXML
+    private Label totalbids;
+    @FXML
+    private Label totalasks;
 
     private SizePriceMap spmSales;
     private SizePriceMap spmAsks;
     private SizePriceMap spmBids;
+    private int totalsalesint;
+    private int totalbidsint;
+    private int totalasksint;
     private String name;
 
     /**
@@ -60,6 +69,9 @@ public class AnalyticsScene {
         initializeSalesChart(sizeset);
         initializeAsksChart(sizeset);
         initializeBidsChart(sizeset);
+        totalsales.setText(String.valueOf(totalsalesint));
+        totalasks.setText(String.valueOf(totalasksint));
+        totalbids.setText(String.valueOf(totalbidsint));
     }
 
     public void back(ActionEvent event) {
@@ -111,7 +123,7 @@ public class AnalyticsScene {
         cAxisSales.setLabel("Size");
         nAxisSales.setLabel("Price");
 
-        ArrayList<XYChart.Series> serielist = getSerieList(sizeset, spmSales);
+        ArrayList<XYChart.Series> serielist = getSerieListSales(sizeset, spmSales);
 
         for (int k = 0; k < serielist.size(); k++) {
             priceChartSales.getData().add(k, serielist.get(k));
@@ -129,7 +141,7 @@ public class AnalyticsScene {
         cAxisAsks.setLabel("Size");
         nAxisAsks.setLabel("Price");
 
-        ArrayList<XYChart.Series> serielist = getSerieList(sizeset, spmAsks);
+        ArrayList<XYChart.Series> serielist = getSerieListAsks(sizeset, spmAsks);
 
         for (int k = 0; k < serielist.size(); k++) {
             priceChartAsks.getData().add(k, serielist.get(k));
@@ -147,7 +159,7 @@ public class AnalyticsScene {
         cAxisBids.setLabel("Size");
         nAxisBids.setLabel("Price");
 
-        ArrayList<XYChart.Series> serielist = getSerieList(sizeset, spmBids);
+        ArrayList<XYChart.Series> serielist = getSerieListBids(sizeset, spmBids);
 
         for (int k = 0; k < serielist.size(); k++) {
             priceChartBids.getData().add(k, serielist.get(k));
@@ -162,7 +174,7 @@ public class AnalyticsScene {
      * @param spm - the SizePriceMap with all the sizes and prices
      * @return an arraylist which contains the series
      */
-    public ArrayList<XYChart.Series> getSerieList(TreeSet<Double> sizeset, SizePriceMap spm) {
+    public ArrayList<XYChart.Series> getSerieListSales(TreeSet<Double> sizeset, SizePriceMap spm) {
         ArrayList<XYChart.Series> serielist = new ArrayList<>();
 
         for (int i = 0; i < sizeset.size(); i++) {
@@ -170,15 +182,66 @@ public class AnalyticsScene {
         }
 
         int count = 0;
-        int average = 0;
 
         for (Double size : sizeset) {
-            serielist.get(count).getData().add(new XYChart.Data(size.toString(), spm.mean(size)));
+            serielist.get(count).getData().add(new XYChart.Data(size.toString(), spm.getMean(size)));
             count++;
         }
 
         return serielist;
     }
+
+    public ArrayList<XYChart.Series> getSerieListAsks(TreeSet<Double> sizeset, SizePriceMap spm) {
+        ArrayList<XYChart.Series> serielist = new ArrayList<>();
+
+        for (int i = 0; i < sizeset.size(); i++) {
+            serielist.add(new XYChart.Series());
+        }
+
+        int count = 0;
+        int sum = 0;
+        int ignored = 0;
+
+        for (Double size : sizeset) {
+            if (count == 0) {
+                serielist.get(count).getData().add(new XYChart.Data(size.toString(), spm.getMinimum(size)));
+                count++;
+                sum += spm.getMinimum(size);
+            }
+            else {
+                if (spm.getMinimum(size) > 3 * (sum / (count - ignored))) {
+                    serielist.get(count).getData().add(new XYChart.Data(size.toString(), 0));
+                    ignored++;
+                    count++;
+                }
+                else {
+                    serielist.get(count).getData().add(new XYChart.Data(size.toString(), spm.getMinimum(size)));
+                    count++;
+                    sum += spm.getMinimum(size);
+                }
+            }
+        }
+
+        return serielist;
+    }
+
+    public ArrayList<XYChart.Series> getSerieListBids(TreeSet<Double> sizeset, SizePriceMap spm) {
+        ArrayList<XYChart.Series> serielist = new ArrayList<>();
+
+        for (int i = 0; i < sizeset.size(); i++) {
+            serielist.add(new XYChart.Series());
+        }
+
+        int count = 0;
+
+        for (Double size : sizeset) {
+            serielist.get(count).getData().add(new XYChart.Data(size.toString(), spm.getMaximum(size)));
+            count++;
+        }
+
+        return serielist;
+    }
+
 
     public SizePriceMap getSpmSales() {
         return spmSales;
@@ -211,4 +274,17 @@ public class AnalyticsScene {
     public void setSpmBids(SizePriceMap spm3) {
         this.spmBids = spm3;
     }
+
+    public void setTotalsalesint(int totalsalesint) {
+        this.totalsalesint = totalsalesint;
+    }
+
+    public void setTotalbidsint(int totalbidsint) {
+        this.totalbidsint = totalbidsint;
+    }
+
+    public void setTotalasksint(int totalasksint) {
+        this.totalasksint = totalasksint;
+    }
+
 }

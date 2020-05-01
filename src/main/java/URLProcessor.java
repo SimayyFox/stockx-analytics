@@ -19,7 +19,7 @@ public class URLProcessor {
         InputStream is;
         URLConnection con;
 
-        System.out.println("\nThank you, processing SKU " + sku.toString() + "...");
+        System.out.println("\nThank you, processing SKU " + sku.toString() + "...\n");
 
         URL url = new URL("https://stockx.com/api/products/" + sku + "/activity?state=480&currency=EUR&limit=10000&page=1&sort=createdAt&order=DESC&country=NL");
 
@@ -43,8 +43,6 @@ public class URLProcessor {
         InputStream is;
         URLConnection con;
 
-        System.out.println("\nThank you, processing SKU " + sku.toString() + "...");
-
         URL url = new URL("https://stockx.com/api/products/" + sku + "/activity?state=300&currency=EUR&limit=10000&page=1&sort=amount&order=DESC&country=NL");
 
         try {
@@ -66,8 +64,6 @@ public class URLProcessor {
     public static BufferedReader getReaderAsks(String sku) throws IOException {
         InputStream is;
         URLConnection con;
-
-        System.out.println("\nThank you, processing SKU " + sku.toString() + "...");
 
         URL url = new URL("https://stockx.com/api/products/" + sku + "/activity?state=400&currency=EUR&limit=10000&page=1&sort=amount&order=ASC&country=NL");
 

@@ -51,7 +51,7 @@ public class SizePriceMap extends HashMap<Double, ArrayList<Integer>> {
         }
     }
 
-    public double mean(Double size) {
+    public double getMean(Double size) {
         double sum = 0;
         int place = 0;
         int ignored = 0;
@@ -90,5 +90,25 @@ public class SizePriceMap extends HashMap<Double, ArrayList<Integer>> {
         }
         sum /= (this.get((double) size).size() - ignored);
         return sum;
+    }
+
+    public double getMinimum(Double size) {
+        double minimum = 900719925474099.0;
+        for (Integer price : this.get((double) size)) {
+            if (price < minimum) {
+                minimum = price;
+            }
+        }
+        return minimum;
+    }
+
+    public double getMaximum(Double size) {
+        double maximum = 0;
+        for (Integer price : this.get((double) size)) {
+            if (price > maximum) {
+                maximum = price;
+            }
+        }
+        return maximum;
     }
 }

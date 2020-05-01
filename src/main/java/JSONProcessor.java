@@ -13,8 +13,7 @@ public class JSONProcessor {
      * @param r - the BufferedReader with json
      * @return sizepricemap - a java.map with each price mapped to a size
      */
-    public static SizePriceMap initialize(BufferedReader r) {
-        String jsonstring = r.lines().collect(Collectors.joining());
+    public static SizePriceMap initialize(String jsonstring) {
         JsonArray ja = JSONProcessor.getProductActivity(jsonstring);
 
         TreeSet<Double> sizes = JSONProcessor.getSizes(ja);
@@ -66,5 +65,12 @@ public class JSONProcessor {
         skuname[0] = jo2.get("id").getAsString();
         skuname[1] = jo2.get("title").getAsString();
         return skuname;
+    }
+
+    public static int getTotal(String r) {
+        JsonObject jo = JsonParser.parseString(r).getAsJsonObject();
+        JsonElement ja = jo.get("Pagination");
+        JsonObject jo2 = ja.getAsJsonObject();
+        return jo2.get("total").getAsInt();
     }
 }
