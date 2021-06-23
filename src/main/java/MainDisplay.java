@@ -20,7 +20,7 @@ public class MainDisplay extends Application {
 
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("StockX Analytical System");
-        primaryStage.getIcons().add(new Image("images/stockxlogo.jpg"));
+        primaryStage.getIcons().add(new Image("https://cdn6.aptoide.com/imgs/7/6/8/768f51268a3b4435dc9004d7586d81f6_icon.png"));
         primaryStage.setResizable(false);
         primaryStage.setOnCloseRequest((a) -> Platform.exit());
         primaryStage.show();
